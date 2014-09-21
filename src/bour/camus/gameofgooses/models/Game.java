@@ -10,7 +10,7 @@ public class Game {
 	private Board mBoard;
 	
 	/**
-	 * Starts a game of the goose. 
+	 * Starts the loop of a game of the goose. 
 	 */
 	public void play() {
 		

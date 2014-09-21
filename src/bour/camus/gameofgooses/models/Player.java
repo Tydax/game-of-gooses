@@ -7,8 +7,11 @@ package bour.camus.gameofgooses.models;
  */
 public class Player {
 	
-	/** Reference to the {@link Cell} containing this Player. */
-	private Cell mCell;
+	/** Reference to the {@link ICell} containing this Player. */
+	private ICell mCell;
+	
+	/** The Player's name. */
+	private String mName;
 	
 	/**
 	 * Throw a die and gets its resulting number.
@@ -23,7 +26,7 @@ public class Player {
 	 * Gets the cell in which the player is.
 	 * @return A reference to the cell in which the player is.
 	 */
-	public Cell getCell() {
+	public ICell getCell() {
 		return mCell;
 	}
 	
@@ -31,7 +34,15 @@ public class Player {
 	 * Move the player to the specified cell.
 	 * @param cell The cell where the player should be moved.
 	 */
-	public void setCell(Cell cell) {
+	public void setCell(ICell cell) {
 		this.mCell = cell;
+	}
+	
+	/**
+	 * Gets the player's name.
+	 * @return The player's name.
+	 */
+	public String getName() {
+		return this.mName;
 	}
 }

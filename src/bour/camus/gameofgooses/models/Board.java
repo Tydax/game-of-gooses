@@ -1,6 +1,6 @@
 package bour.camus.gameofgooses.models;
 
-/** The Board class represents the board of the {@link Game}. It contains all the {@link Cell}
+/** The Board class represents the board of the {@link Game}. It contains all the {@link ICell}
  * used to play.
  * 
  * @author Armand BOUR
@@ -9,7 +9,7 @@ package bour.camus.gameofgooses.models;
 public class Board {
 	
 	/** Array containing all the cells of the board. */
-	private Cell[] mCells;
+	private ICell[] mCells;
 
 	
 	/**
@@ -26,7 +26,7 @@ public class Board {
 	 * @param index The index of the cell to get.
 	 * @return the cell at the specified index
 	 */
-	public Cell getCell(int index) {
+	public ICell getCell(int index) {
 		return null;
 	}
 }

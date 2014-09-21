@@ -6,7 +6,7 @@ package bour.camus.gameofgooses.models;
  *
  */
 
-public interface Cell {
+public interface ICell {
 	
 	/**
 	 * Indicates if a player occupying this cell can, at this turn, leave the cell.
