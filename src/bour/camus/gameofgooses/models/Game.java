@@ -28,7 +28,7 @@ public class Game {
 	
 	/**
 	 * Gets the player whose turn is is.
-	 * @return The player whose turn is is.
+	 * @return The player whose turn it is.
 	 */
 	
 	public Player nextPlayer() {

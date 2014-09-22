@@ -1,5 +1,7 @@
 package bour.camus.gameofgooses.models;
 
+import bour.camus.gameofgooses.models.cells.ICell;
+
 /** The Board class represents the board of the {@link Game}. It contains all the {@link ICell}
  * used to play.
  * 
@@ -9,8 +11,11 @@ package bour.camus.gameofgooses.models;
 public class Board {
 	
 	/** Array containing all the cells of the board. */
-	private ICell[] mCells;
+	private final ICell[] mCells;
 
+	public Board(int size) {
+		mCells = new ICell[size];
+	}
 	
 	/**
 	 * Normalise the specified index to make sure it doesn't exceed the size of the board.

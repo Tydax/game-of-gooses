@@ -1,4 +1,7 @@
-package bour.camus.gameofgooses.models;
+package bour.camus.gameofgooses.models.cells;
+
+import bour.camus.gameofgooses.models.Board;
+import bour.camus.gameofgooses.models.Player;
 
 /**
  * AbstractCell represents a basic cell, and allows to avoid duplicating code.

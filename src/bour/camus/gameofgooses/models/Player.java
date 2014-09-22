@@ -1,5 +1,7 @@
 package bour.camus.gameofgooses.models;
 
+import bour.camus.gameofgooses.models.cells.ICell;
+
 /**
  * This class represents a player in the game with its goose.
  * @author Armand BOUR
@@ -12,6 +14,14 @@ public class Player {
 	
 	/** The Player's name. */
 	private String mName;
+	
+	/**
+	 * Constructor with one parameter.
+	 * @param name The name of the Player.
+	 */
+	public Player(String name) {
+		this.mName = name;
+	}
 	
 	/**
 	 * Throw a die and gets its resulting number.

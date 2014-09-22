@@ -1,4 +1,5 @@
-package bour.camus.gameofgooses.models;
+package bour.camus.gameofgooses.models.cells;
+
 
 /**
  * NormalCell represents a basic cell with absolutely no special effect.
@@ -9,7 +10,7 @@ public class NormalCell extends AbstractCell {
 
 	/**
 	 * Constructor with the index. Creates a normal cell containing no player.
-	 * @param index The index of the cell.
+	 * @param index The index of the cell in the board (starting at 0).
 	 */
 
 	public NormalCell(int index) {
