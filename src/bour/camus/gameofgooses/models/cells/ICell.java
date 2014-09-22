@@ -1,4 +1,6 @@
-package bour.camus.gameofgooses.models;
+package bour.camus.gameofgooses.models.cells;
+
+import bour.camus.gameofgooses.models.Player;
 
 /** Interface for the cells of the goose game..
  * 
@@ -6,7 +8,7 @@ package bour.camus.gameofgooses.models;
  *
  */
 
-public interface Cell {
+public interface ICell {
 	
 	/**
 	 * Indicates if a player occupying this cell can, at this turn, leave the cell.

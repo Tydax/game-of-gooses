@@ -10,7 +10,7 @@ public class Game {
 	private Board mBoard;
 	
 	/**
-	 * Starts a game of the goose. 
+	 * Starts the loop of a game of the goose. 
 	 */
 	public void play() {
 		
@@ -28,7 +28,7 @@ public class Game {
 	
 	/**
 	 * Gets the player whose turn is is.
-	 * @return The player whose turn is is.
+	 * @return The player whose turn it is.
 	 */
 	
 	public Player nextPlayer() {
