@@ -17,6 +17,19 @@ import bour.camus.gameofgooses.models.cells.WaitCell;
 
 public interface IGameWatcher {
 
+	
+	/**
+	 * Method called to initialise players and get the players' name.
+	 * @return A Collection containing all the players' name.
+	 */
+	public abstract String[] initialisePlayers();
+	
+	/**
+	 * Method called when the game starts.
+	 */
+	
+	public abstract void onGameStart();
+	
 	/**
 	 * Method called when changing turns.
 	 * @param player The player whose turn it is.
@@ -90,7 +103,6 @@ public interface IGameWatcher {
 	 * Method called when the player arrives on the final cell and wins.
 	 * @param player The winner!
 	 */
-	
 	
 	public abstract void onPlayerWin(Player player);
 	

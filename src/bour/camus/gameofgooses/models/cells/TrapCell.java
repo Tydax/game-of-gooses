@@ -10,6 +10,14 @@ import bour.camus.gameofgooses.models.Player;
  */
 public class TrapCell extends AbstractCell {
 
+	/**
+	 * Constructor taking one parameter.
+	 * @param index The index of the cell.
+	 */
+	public TrapCell(int index) {
+		this.mIndex = index;
+	}
+	
 	@Override
 	public boolean canBeLeftNow() {
 		return false;

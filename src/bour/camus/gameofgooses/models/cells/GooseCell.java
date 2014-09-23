@@ -8,6 +8,15 @@ package bour.camus.gameofgooses.models.cells;
  */
 public class GooseCell extends AbstractCell {
 
+	/**
+	 * Constructor taking one parameter.
+	 * @param index The index of the cell in the board (starting with 0).
+	 */
+	
+	public GooseCell(int index) {
+		this.mIndex = index;
+	}
+	
 	@Override
 	public int handleMove(int diceThrow) {
 		return this.mIndex + diceThrow;

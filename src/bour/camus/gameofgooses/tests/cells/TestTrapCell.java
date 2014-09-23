@@ -2,18 +2,28 @@ package bour.camus.gameofgooses.tests.cells;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import bour.camus.gameofgooses.models.cells.TrapCell;
 
 public class TestTrapCell {
 
+	private TrapCell mCell;
+	
+	@Before
+	public void instantiateFields() {
+		this.mCell = new TrapCell(3);
+	}
+	
 	@Test
 	public void testCanBeLeftNow() {
-		fail("Not yet implemented");
+		assertFalse(this.mCell.canBeLeftNow());
 	}
 
 	@Test
 	public void testHandleMove() {
-		fail("Not yet implemented");
+		assertEquals(3, this.mCell.handleMove(4));
 	}
 
 }

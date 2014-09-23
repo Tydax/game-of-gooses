@@ -1,5 +1,8 @@
 package bour.camus.gameofgooses.ui;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 import bour.camus.gameofgooses.models.Player;
 import bour.camus.gameofgooses.models.cells.GooseCell;
 import bour.camus.gameofgooses.models.cells.ICell;
@@ -16,66 +19,103 @@ import bour.camus.gameofgooses.models.cells.WaitCell;
 public class ConsoleUI implements IGameWatcher {
 
 	@Override
-	public void onPlayerTurn(Player player) {
-		// TODO Auto-generated method stub
+	public String[] initialisePlayers() {
+		int nbPlayers;
+		Scanner scan = new Scanner(System.in);
+		
+		// Wait for an appropriate number of players
+		do {
+			// Ask for the number of players
+			System.out.print("Number of players (2-6): ");
+			
+			// Wait for a number and store it
+			nbPlayers = scan.nextInt();
+		} while (nbPlayers < 2 || nbPlayers > 6);
+		
+		
+		String[] names = new String[nbPlayers];
+		
+		for(int i=0 ; i < names.length ; i++) {
+			// Ask for a name
+			System.out.print("Name for Player " + i + ": ");
+			
+			// Wait for one and store it
+			names[i] = scan.next();
+		}
+		
+		return names;
+	}
+	
+	@Override
+	public void onGameStart() {
+		System.out.println("Game is starting! Let's play!");
+	}
 
+	@Override
+	public void onPlayerTurn(Player player) {
+		System.out.println(player.getName() + ", it's your turn! (Enter to throw dice)");
+		
+		// Wait for the user to press enter to continue
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onPlayerThrowDice(Player player, int die1, int die2) {
-		// TODO Auto-generated method stub
+		int sum = die1 + die2;
+		System.out.println(player.getName() + " throws the dice. Gets " + die1 + " and "
+				+ die2 + ", " + sum + ".");
 
 	}
 
 	@Override
 	public void onPlayerMove(Player player, ICell cell) {
-		// TODO Auto-generated method stub
-
+		System.out.println(player.getName() + " moves to cell " + cell.getIndex() + ".");
 	}
 
 	@Override
 	public void onPlayerSwap(Player player1, ICell cell1, Player player2,
 			ICell cell2) {
-		// TODO Auto-generated method stub
-
+		System.out.println("Cell " + cell1.getIndex() + " is occupied by " + player2.getName() + "!");
+		System.out.println(player2.getName() + " is sent to cell " + cell2.getIndex() + ".");
 	}
 
 	@Override
 	public void onPlayerGoose(Player player, GooseCell cell) {
-		// TODO Auto-generated method stub
-
+		System.out.println("Goose cell! " + player.getName() + " moves again!");
 	}
 
 	@Override
 	public void onPlayerTeleport(Player player, TeleportCell cell,
 			ICell destination) {
-		// TODO Auto-generated method stub
-
+		System.out.println("Teleport cell! " + player.getName() + " is teleported to cell "
+			+ destination.getIndex() + ".");
 	}
 
 	@Override
 	public void onPlayerTrapped(Player player, TrapCell cell) {
-		// TODO Auto-generated method stub
-
+		System.out.println(player.getName() + " is trapped! He cannot move!");
 	}
 
 	@Override
 	public void onPlayerWaiting(Player player, WaitCell cell, int turnLeft) {
-		// TODO Auto-generated method stub
-		
+		System.out.println(player.getName() + " has to wait " + turnLeft + " more turn"
+				+ (turnLeft > 1
+				  ? "s."
+				  : ".")
+				);
 	}
 
 	@Override
 	public void onPlayerWin(Player player) {
-		// TODO Auto-generated method stub
-
+		System.out.println(player.getName() + " wins!! Congratulations!!");
 	}
 
 	@Override
 	public void onPlayersAllTrapped() {
-		// TODO Auto-generated method stub
-
+		System.out.println("All players are trapped! The game is over!");
 	}
-
-
 }

@@ -42,8 +42,7 @@ public class TestWaitCell {
 
 	@Test
 	public void testHandleMove() {
-		// TODO: implement this test
-		fail("Not yet implemented");
+		assertEquals(2, this.mCell.handleMove(4));
 	}
 
 }
