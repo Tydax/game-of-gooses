@@ -1,5 +1,9 @@
 package bour.camus.gameofgooses.models;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import bour.camus.gameofgooses.models.cells.ICell;
 
 /** The Board class represents the board of the {@link Game}. It contains all the {@link ICell}
@@ -13,8 +17,23 @@ public class Board {
 	/** Array containing all the cells of the board. */
 	private final ICell[] mCells;
 
-	public Board(int size) {
-		mCells = new ICell[size];
+	public Board(String filename) {
+		File file = new File(filename);
+		Scanner in;
+		try {
+			in = new Scanner(file);
+			int nbLines = 0; 
+			
+			while(in.hasNextLine())
+			{
+				nbLines++;
+			}
+			
+			mCells = new ICell[nbLines];
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.out.println("File not found.");
+		}
 	}
 	
 	/**
