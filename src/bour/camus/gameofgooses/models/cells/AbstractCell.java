@@ -46,4 +46,10 @@ public abstract class AbstractCell implements ICell {
 		this.mPlayer = player;
 	}
 
+	@Override
+	public Player empty() {
+		Player player = this.mPlayer;
+		this.mPlayer = null;
+		return player;
+	}
 }

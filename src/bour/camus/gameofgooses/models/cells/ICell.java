@@ -1,5 +1,7 @@
 package bour.camus.gameofgooses.models.cells;
 
+import org.junit.experimental.theories.Theories;
+
 import bour.camus.gameofgooses.models.Player;
 
 /** Interface for the cells of the goose game..
@@ -63,4 +65,11 @@ public interface ICell {
 	 * @param player The newcoming Player.
 	 */
 	public void welcome(Player player);
+	
+	/**
+	 * Empty the cell and returns the {@link Player} it used to contain.
+	 * @return The Player that the cell used to contain.
+	 * 			<code>null</code> if the cell was already empty.
+	 */
+	public Player empty();
 }
