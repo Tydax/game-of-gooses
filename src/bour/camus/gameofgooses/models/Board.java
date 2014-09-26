@@ -53,4 +53,13 @@ public class Board {
 	public ICell getCell(int index) {
 		return null;
 	}
+	
+	/**
+	 * Gets the number of cells in the Board.
+	 * @return The number of cells.
+	 */
+	
+	public int getSize() {
+		return this.mCells.length;
+	}
 }

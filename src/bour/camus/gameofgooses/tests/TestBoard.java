@@ -22,6 +22,12 @@ public class TestBoard {
 	}
 	
 	@Test
+	public void testBoard() {
+		// TODO: Implement test for Board constructor
+		fail("Not implemented");
+	}
+	
+	@Test
 	public void testNormalise() {
 		assertEquals(12, mBoard.normalise(12));
 		assertEquals(59, mBoard.normalise(65));

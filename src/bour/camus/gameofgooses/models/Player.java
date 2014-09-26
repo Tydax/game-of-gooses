@@ -29,12 +29,13 @@ public class Player {
 	 */
 	
 	public int throwDie() {
-		return 0;
+		return (int) (Math.random() * 5 + 1);
 	}
 	
 	/**
 	 * Gets the cell in which the player is.
 	 * @return A reference to the cell in which the player is.
+	 * 		  <code>null</code> if the Players is not placed on the {@link Board}.
 	 */
 	public ICell getCell() {
 		return mCell;
@@ -54,5 +55,22 @@ public class Player {
 	 */
 	public String getName() {
 		return this.mName;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Player other = (Player) obj;
+		if (mName == null) {
+			if (other.mName != null)
+				return false;
+		} else if (!mName.equals(other.mName))
+			return false;
+		return true;
 	}
 }

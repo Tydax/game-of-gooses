@@ -1,6 +1,7 @@
 package bour.camus.gameofgooses.ui;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import bour.camus.gameofgooses.models.Player;
@@ -36,11 +37,18 @@ public class ConsoleUI implements IGameWatcher {
 		String[] names = new String[nbPlayers];
 		
 		for(int i=0 ; i < names.length ; i++) {
-			// Ask for a name
-			System.out.print("Name for Player " + i + ": ");
+			// Keep asking for a name that is not in the array
+			String name;
+			do {
+				// Ask for a name
+				System.out.print("Name for Player " + i + ": ");
+				
+				// Wait for one
+				name = scan.next();
+			} while(Arrays.asList(names).contains(name));
 			
-			// Wait for one and store it
-			names[i] = scan.next();
+			// Store it
+			names[i] = name;
 		}
 		
 		return names;
