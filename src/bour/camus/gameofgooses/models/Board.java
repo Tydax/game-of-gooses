@@ -2,9 +2,15 @@ package bour.camus.gameofgooses.models;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
 import java.util.Scanner;
 
+import bour.camus.gameofgooses.models.cells.GooseCell;
 import bour.camus.gameofgooses.models.cells.ICell;
+import bour.camus.gameofgooses.models.cells.NormalCell;
+import bour.camus.gameofgooses.models.cells.TeleportCell;
+import bour.camus.gameofgooses.models.cells.TrapCell;
+import bour.camus.gameofgooses.models.cells.WaitCell;
 
 /** The Board class represents the board of the {@link Game}. It contains all the {@link ICell}
  * used to play.
@@ -20,17 +26,55 @@ public class Board {
 	public Board(String filename) {
 		File file = new File(filename);
 		Scanner in;
-		try {
+		try 
+		{
 			in = new Scanner(file);
-			int nbLines = 0; 
+			int nbLines = 0;
+			
+			// List containing each line of the file.
+		    LinkedList<String> cellsList = new LinkedList<String>();
 			
 			while(in.hasNextLine())
 			{
+				cellsList.add(in.next());
 				nbLines++;
 			}
 			
 			mCells = new ICell[nbLines];
-		} catch (FileNotFoundException e) {
+			mCells[0] = new DepartureCell();
+			
+			int i = 1;
+			for (String cell : cellsList) {
+				switch (cell.charAt(0)) {
+				case 0:
+					mCells[i] = new NormalCell(i);
+					break;
+				
+				case 1:
+					mCells[i] = new GooseCell(i);
+					break;
+					
+				case 2:
+					mCells[i] = new TrapCell(i);
+					break;
+				
+				case 3:
+					mCells[i] = new WaitCell(i,Integer.parseInt(cell.substring(2)));
+					break;
+					
+				case 4:
+					mCells[i] = new TeleportCell(i,Integer.parseInt(cell.substring(2)));
+					break;
+
+				default:
+					break;
+				}
+				i++;
+			}
+			
+		} 
+		catch (FileNotFoundException e) 
+		{
 			e.printStackTrace();
 			System.out.println("File not found.");
 		}
