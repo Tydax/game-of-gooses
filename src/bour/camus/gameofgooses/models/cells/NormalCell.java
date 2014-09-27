@@ -4,7 +4,7 @@ package bour.camus.gameofgooses.models.cells;
 /**
  * NormalCell represents a basic cell with absolutely no special effect.
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 public class NormalCell extends AbstractCell {
 

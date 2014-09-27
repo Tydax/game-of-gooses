@@ -6,7 +6,7 @@ import bour.camus.gameofgooses.models.Player;
  * WaitCell represents a type of cell where the {@link Player} has to wait a specific amount of time
  * before being able to play again.
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 public class WaitCell extends AbstractCell {
 

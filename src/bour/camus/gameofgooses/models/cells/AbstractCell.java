@@ -6,7 +6,7 @@ import bour.camus.gameofgooses.models.Player;
 /**
  * AbstractCell represents a basic cell, and allows to avoid duplicating code.
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 public abstract class AbstractCell implements ICell {
 

@@ -15,7 +15,7 @@ import bour.camus.gameofgooses.models.cells.WaitCell;
 /**
  * Test class for the {@link Board} class.
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 public class TestBoard {
 

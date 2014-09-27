@@ -5,7 +5,7 @@ import bour.camus.gameofgooses.models.Player;
 /**
  * TeleportCell represents a cell where the {@link Player} is teleported to another cell upon arrival.
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 public class TeleportCell extends AbstractCell {
 	

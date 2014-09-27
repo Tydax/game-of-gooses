@@ -11,7 +11,7 @@ import bour.camus.gameofgooses.models.Player;
  * DepartureCell represents the first case of a {@link Board}. It is the only cell that can contain
  * several {@link Player}s.
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 public class DepartureCell implements ICell {
 

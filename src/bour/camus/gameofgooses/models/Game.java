@@ -9,7 +9,7 @@ import bour.camus.gameofgooses.ui.IGameWatcher;
 /**
  * The Game class represents a game of the goose.
  * @author Armand BOUR
- * 
+ * @author Tristan CAMUS
  */
 public class Game {
 	

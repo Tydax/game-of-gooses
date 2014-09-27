@@ -17,7 +17,7 @@ import bour.camus.gameofgooses.models.cells.WaitCell;
  * used to play.
  * 
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 public class Board {
 	
@@ -105,7 +105,9 @@ public class Board {
 	 * @return the normalised index
 	 */
 	public int normalise(int index) {
-		return 0;
+		if(index>this.getSize())
+			return this.getSize()-(index-this.getSize());
+		return index;
 	}
 	
 	/**
@@ -114,7 +116,7 @@ public class Board {
 	 * @return the cell at the specified index
 	 */
 	public ICell getCell(int index) {
-		return null;
+		return mCells[index];
 	}
 	
 	/**
@@ -151,10 +153,5 @@ public class Board {
 				
 		}
 		return s;
-	}
-	
-	public static void main(String[] args) {
-		Board b = new Board("board.txt");
-		System.out.println(b);
 	}
 }

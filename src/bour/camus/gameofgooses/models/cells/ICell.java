@@ -1,13 +1,11 @@
 package bour.camus.gameofgooses.models.cells;
 
-import org.junit.experimental.theories.Theories;
-
 import bour.camus.gameofgooses.models.Player;
 
 /** Interface for the cells of the goose game..
  * 
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 
 public interface ICell {

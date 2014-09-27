@@ -6,7 +6,7 @@ import bour.camus.gameofgooses.models.Player;
  * TrapCell represents a cell in which the {@link Player} is trapped, and can't play until someone replaces him
  * in the case.
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 public class TrapCell extends AbstractCell {
 

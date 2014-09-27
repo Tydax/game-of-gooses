@@ -4,7 +4,7 @@ package bour.camus.gameofgooses.models.cells;
  * GooseCell represents a cell allowing the {@link Player} to move again by the score
  * of the die.
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 public class GooseCell extends AbstractCell {
 
