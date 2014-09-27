@@ -25,8 +25,6 @@ public class TrapCell extends AbstractCell {
 	
 	@Override
 	public int handleMove(int diceThrow) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.mIndex;
 	}
-
 }

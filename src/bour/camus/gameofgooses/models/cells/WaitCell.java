@@ -65,4 +65,20 @@ public class WaitCell extends AbstractCell {
 	public void welcome(Player p) {
 		
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (!(obj instanceof WaitCell))
+			return false;
+		WaitCell other = (WaitCell) obj;
+		if (mTimeLeft != other.mTimeLeft)
+			return false;
+		if (mWaitingTime != other.mWaitingTime)
+			return false;
+		return true;
+	}
 }

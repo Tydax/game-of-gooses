@@ -21,5 +21,4 @@ public class GooseCell extends AbstractCell {
 	public int handleMove(int diceThrow) {
 		return this.mIndex + diceThrow;
 	}
-
 }

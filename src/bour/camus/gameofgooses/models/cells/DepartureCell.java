@@ -87,4 +87,21 @@ public class DepartureCell implements ICell {
 	public int getNumberOfPlayers() {
 		return this.mPlayers.size();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof DepartureCell))
+			return false;
+		DepartureCell other = (DepartureCell) obj;
+		if (mPlayers == null) {
+			if (other.mPlayers != null)
+				return false;
+		} else if (!mPlayers.equals(other.mPlayers))
+			return false;
+		return true;
+	}
 }
