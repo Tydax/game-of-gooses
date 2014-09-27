@@ -52,18 +52,25 @@ public class WaitCell extends AbstractCell {
 	
 	@Override
 	public boolean canBeLeftNow() {
-		return true;
+		if(this.mTimeLeft == 0) {
+			return true;
+		}
+		else {
+			this.mTimeLeft --;
+			return false;
+		}
 	}
 	
 	@Override
 	public int handleMove(int diceThrow) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.mIndex;
 	}
 
 	@Override
 	public void welcome(Player p) {
-		
+		this.mPlayer = p;
+		// Reset the number of turns to wait.
+		this.mTimeLeft = this.mWaitingTime;
 	}
 
 	@Override
