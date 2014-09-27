@@ -24,18 +24,16 @@ public class TestBoard {
 	@Before
 	public void initialiseBoard() {
 		mBoard = new Board("boardTest.txt");
+	}
+	
+	@Test
+	public void testBoard() {
 		assertEquals(new DepartureCell(), mBoard.getCell(0));
 		assertEquals(new NormalCell(1), mBoard.getCell(1));
 		assertEquals(new GooseCell(2), mBoard.getCell(2));
 		assertEquals(new WaitCell(3,1), mBoard.getCell(3));
 		assertEquals(new TeleportCell(4,1), mBoard.getCell(4));
 		assertEquals(new NormalCell(5), mBoard.getCell(5));		
-	}
-	
-	@Test
-	public void testBoard() {
-		// TODO: Implement test for Board constructor
-		fail("Not implemented");
 	}
 	
 	@Test
@@ -46,7 +44,7 @@ public class TestBoard {
 
 	@Test
 	public void testGetCell() {
-		fail("Not yet implemented");
+		assertEquals(new TeleportCell(4,1), mBoard.getCell(4));
 	}
 
 }

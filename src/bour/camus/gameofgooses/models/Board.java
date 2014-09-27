@@ -47,6 +47,7 @@ public class Board {
 			mCells[0] = new DepartureCell();
 			
 			int i = 1;
+			// For each line of the file create a cell corresponding to it.
 			for (String cell : cellsList) {
 				if(cell.matches("[0-2]|((3|4),[0-9]*)"))
 				{
