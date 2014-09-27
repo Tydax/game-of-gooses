@@ -2,6 +2,7 @@ package bour.camus.gameofgooses.models.cells;
 
 import bour.camus.gameofgooses.models.Board;
 import bour.camus.gameofgooses.models.Player;
+import bour.camus.gameofgooses.ui.IGameWatcher;
 
 /**
  * AbstractCell represents a basic cell, and allows to avoid duplicating code.
@@ -72,5 +73,8 @@ public abstract class AbstractCell implements ICell {
 		return true;
 	}
 	
-	
+	@Override
+	public void noticeUIOfTypeOfCell(Player player, IGameWatcher ui) {
+		// Nothing to do here
+	}
 }

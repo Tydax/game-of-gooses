@@ -40,8 +40,9 @@ public class ConsoleUI implements IGameWatcher {
 			// Keep asking for a name that is not in the array
 			String name;
 			do {
+				int index = i + 1;
 				// Ask for a name
-				System.out.print("Name for Player " + i + ": ");
+				System.out.print("Name for Player " + index + ": ");
 				
 				// Wait for one
 				name = scan.next();
@@ -61,14 +62,15 @@ public class ConsoleUI implements IGameWatcher {
 
 	@Override
 	public void onPlayerTurn(Player player) {
-		System.out.println(player.getName() + ", it's your turn! (Enter to throw dice)");
+		System.out.println(player.getName() + ", it's your turn!");
 		
 		// Wait for the user to press enter to continue
+		/*
 		try {
 			System.in.read();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} */
 	}
 
 	@Override
@@ -98,9 +100,9 @@ public class ConsoleUI implements IGameWatcher {
 
 	@Override
 	public void onPlayerTeleport(Player player, TeleportCell cell,
-			ICell destination) {
+			int destination) {
 		System.out.println("Teleport cell! " + player.getName() + " is teleported to cell "
-			+ destination.getIndex() + ".");
+			+ destination + ".");
 	}
 
 	@Override

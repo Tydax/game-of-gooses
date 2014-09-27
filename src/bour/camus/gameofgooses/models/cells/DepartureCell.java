@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 
 import bour.camus.gameofgooses.models.Board;
 import bour.camus.gameofgooses.models.Player;
+import bour.camus.gameofgooses.ui.IGameWatcher;
 
 /**
  * DepartureCell represents the first case of a {@link Board}. It is the only cell that can contain
@@ -103,5 +104,10 @@ public class DepartureCell implements ICell {
 		} else if (!mPlayers.equals(other.mPlayers))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public void noticeUIOfTypeOfCell(Player player, IGameWatcher ui) {
+		// Nothing to do here
 	}
 }

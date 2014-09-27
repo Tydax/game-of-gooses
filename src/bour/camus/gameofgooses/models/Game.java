@@ -2,7 +2,12 @@ package bour.camus.gameofgooses.models;
 
 import java.security.InvalidParameterException;
 
+import bour.camus.gameofgooses.models.cells.GooseCell;
 import bour.camus.gameofgooses.models.cells.ICell;
+import bour.camus.gameofgooses.models.cells.TeleportCell;
+import bour.camus.gameofgooses.models.cells.TrapCell;
+import bour.camus.gameofgooses.models.cells.WaitCell;
+import bour.camus.gameofgooses.ui.ConsoleUI;
 import bour.camus.gameofgooses.ui.IGameWatcher;
 
 /**
@@ -46,7 +51,8 @@ public class Game {
 	 */
 	
 	public Game(IGameWatcher ui) {
-		this("defaultboard", ui.initialisePlayers());
+		this("board.txt", ui.initialisePlayers());
+		this.mInterface = ui;
 	}
 	
 	/**
@@ -58,6 +64,7 @@ public class Game {
 	
 	public Game(IGameWatcher ui, String boardModel) {
 		this(boardModel, ui.initialisePlayers());
+		this.mInterface = ui;
 	}
 	
 	/**
@@ -78,6 +85,8 @@ public class Game {
 		this.mPlayers = new Player[names.length];
 		for(int i=0 ; i < this.mPlayers.length ; i++) {
 			this.mPlayers[i] = new Player(names[i]);
+			this.mBoard.getCell(0).welcome(this.mPlayers[i]);
+			this.mPlayers[i].setCell(this.mBoard.getCell(0));
 		}
 		
 		this.mNextPlayerIndex = 0;
@@ -87,9 +96,50 @@ public class Game {
 	 * Starts the loop of a game of the goose. 
 	 */
 	public void play() {
-		
+		while(!isFinished()) {
+			// Select the next player to play
+			Player player = nextPlayer();
+			this.mInterface.onPlayerTurn(player);
+			
+			// Check if the player can leave
+			final ICell currentCell = player.getCell();
+			if(currentCell.canBeLeftNow()) {
+				// Throw dice
+				int die1 = player.throwDie(),
+					die2 = player.throwDie(),
+					diceScore = die1+ die2;
+				this.mInterface.onPlayerThrowDice(player, die1, die2);
+				
+				int index = this.mBoard.normalise(currentCell.getIndex() + diceScore);
+				ICell targetCell = this.mBoard.getCell(index);
+				this.mInterface.onPlayerMove(player, targetCell);
+				targetCell.noticeUIOfTypeOfCell(player, this.mInterface);
+				
+				int realIndex = this.mBoard.normalise(targetCell.handleMove(diceScore));
+				targetCell = this.mBoard.getCell(realIndex);
+				
+				if(targetCell.isBusy()) {
+					swapPlayers(targetCell, currentCell);
+				}
+				else {
+					targetCell.welcome(player);
+					currentCell.empty();
+				}
+				
+				targetCell.noticeUIOfTypeOfCell(player, this.mInterface);
+			}
+			else { // if he can't, he's stuck in trap cell or wait cell, notice the interface
+				if(currentCell instanceof TrapCell) {
+					this.mInterface.onPlayerTrapped(player, (TrapCell) currentCell);
+				}
+				else if(currentCell instanceof WaitCell) {
+					WaitCell waitCell = (WaitCell) currentCell;
+					this.mInterface.onPlayerWaiting(player, waitCell, waitCell.getTimeLeft());
+				}
+			}
+		}
 	}
-	
+
 	/**
 	 * Checks whether the current game is finished or not.
 	 * @return <code>true</code> if the game is finished ;
@@ -128,7 +178,7 @@ public class Game {
 		Player p = this.mPlayers[mNextPlayerIndex];
 		
 		// End of the array reached, let's reset the index.
-		if(this.mNextPlayerIndex == this.mPlayers.length) {
+		if(this.mNextPlayerIndex == this.mPlayers.length - 1) {
 			this.mNextPlayerIndex = 0;
 		}
 		else {
@@ -153,5 +203,10 @@ public class Game {
 	 */
 	public Board getBoard() {
 		return this.mBoard;
+	}
+	
+	public static void main(String[] args) {
+		Game theGame = new Game(new ConsoleUI());
+		theGame.play();
 	}
 }

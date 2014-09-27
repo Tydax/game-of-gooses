@@ -1,6 +1,7 @@
 package bour.camus.gameofgooses.models.cells;
 
 import bour.camus.gameofgooses.models.Player;
+import bour.camus.gameofgooses.ui.IGameWatcher;
 
 /**
  * TeleportCell represents a cell where the {@link Player} is teleported to another cell upon arrival.
@@ -48,5 +49,10 @@ public class TeleportCell extends AbstractCell {
 		if (mDest != other.mDest)
 			return false;
 		return true;
+	}
+	
+	@Override
+	public void noticeUIOfTypeOfCell(Player player, IGameWatcher ui) {
+		ui.onPlayerTeleport(player, this, this.mDest);
 	}
 }

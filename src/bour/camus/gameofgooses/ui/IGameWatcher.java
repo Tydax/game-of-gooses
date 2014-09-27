@@ -79,7 +79,7 @@ public interface IGameWatcher {
 	 * @param destination The destination {@link ICell}.
 	 */
 	
-	public abstract void onPlayerTeleport(Player player, TeleportCell cell, ICell destination);
+	public abstract void onPlayerTeleport(Player player, TeleportCell cell, int destination);
 	
 	/**
 	 * Method called when the player is trapped in a {@link TrapCell}.

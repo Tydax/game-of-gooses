@@ -1,6 +1,7 @@
 package bour.camus.gameofgooses.models.cells;
 
 import bour.camus.gameofgooses.models.Player;
+import bour.camus.gameofgooses.ui.IGameWatcher;
 
 /** Interface for the cells of the goose game..
  * 
@@ -61,6 +62,7 @@ public interface ICell {
 	 * Welcomes the {@link Player}. This method is called when a new Player arrives on
 	 * the cell.
 	 * @param player The newcoming Player.
+	 * @param ui TODO
 	 */
 	public void welcome(Player player);
 	
@@ -70,4 +72,6 @@ public interface ICell {
 	 * 			<code>null</code> if the cell was already empty.
 	 */
 	public Player empty();
+	
+	public void noticeUIOfTypeOfCell(Player player, IGameWatcher ui);
 }

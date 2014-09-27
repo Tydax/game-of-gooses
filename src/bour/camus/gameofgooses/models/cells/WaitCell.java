@@ -1,6 +1,7 @@
 package bour.camus.gameofgooses.models.cells;
 
 import bour.camus.gameofgooses.models.Player;
+import bour.camus.gameofgooses.ui.IGameWatcher;
 
 /**
  * WaitCell represents a type of cell where the {@link Player} has to wait a specific amount of time
@@ -87,5 +88,10 @@ public class WaitCell extends AbstractCell {
 		if (mWaitingTime != other.mWaitingTime)
 			return false;
 		return true;
+	}
+	
+	@Override
+	public void noticeUIOfTypeOfCell(Player player, IGameWatcher ui) {
+		ui.onPlayerWaiting(player, this, this.mTimeLeft);
 	}
 }
