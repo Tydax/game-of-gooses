@@ -40,6 +40,7 @@ public class Board {
 				cellsList.add(in.next());
 				nbLines++;
 			}
+			in.close();
 			nbLines += 2;
 			
 			mCells = new ICell[nbLines];
@@ -73,7 +74,7 @@ public class Board {
 						}
 						else
 						{
-							System.out.println(cell+" : Invalid destination.");
+							throw new RuntimeException(cell+" : Invalid destination.");
 						}
 						break;
 	
@@ -83,7 +84,7 @@ public class Board {
 				}
 				else
 				{
-					System.out.println(cell+" : Invalid syntax.");
+					throw new RuntimeException(cell+" : Invalid syntax.");
 				}
 				i++;
 			}
