@@ -18,7 +18,7 @@ public class TestBoard {
 	
 	@Before
 	public void initialiseBoard() {
-		mBoard = new Board(63);
+		mBoard = new Board("board.txt");
 	}
 	
 	@Test
