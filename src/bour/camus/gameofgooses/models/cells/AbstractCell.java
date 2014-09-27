@@ -52,4 +52,25 @@ public abstract class AbstractCell implements ICell {
 		this.mPlayer = null;
 		return player;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof AbstractCell))
+			return false;
+		AbstractCell other = (AbstractCell) obj;
+		if (mIndex != other.mIndex)
+			return false;
+		if (mPlayer == null) {
+			if (other.mPlayer != null)
+				return false;
+		} else if (!mPlayer.equals(other.mPlayer))
+			return false;
+		return true;
+	}
+	
+	
 }

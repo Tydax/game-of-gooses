@@ -2,6 +2,7 @@ package bour.camus.gameofgooses.models;
 
 import java.security.InvalidParameterException;
 
+import bour.camus.gameofgooses.models.cells.ICell;
 import bour.camus.gameofgooses.ui.ConsoleUI;
 import bour.camus.gameofgooses.ui.IGameWatcher;
 
@@ -22,6 +23,9 @@ public class Game {
 	
 	/** Array containing all the players. */
 	private final Player[] mPlayers;
+	
+	/** The index of the next player to play. */
+	private int mNextPlayerIndex;
 	
 	/**
 	 * Constructor initialising the players through the {@link IGameWatcher#initialisePlayers()} method.
@@ -63,6 +67,8 @@ public class Game {
 		for(int i=0 ; i < this.mPlayers.length ; i++) {
 			this.mPlayers[i] = new Player(names[i]);
 		}
+		
+		this.mNextPlayerIndex = 0;
 	}
 	
 	/**
@@ -79,7 +85,26 @@ public class Game {
 	 */
 	
 	public boolean isFinished() {
-		return true;
+		// Check if last cell is containing a player
+		final ICell finalCell = this.mBoard.getCell(this.mBoard.getSize() - 1);
+		if(finalCell.isBusy()) {
+			// Notice the interface of the winner
+			this.mInterface.onPlayerWin(finalCell.getPlayer());
+			
+			return true;
+		}
+		else {
+			// Check if all players are in trap cells
+			for(Player p : this.mPlayers) {
+				if(!p.getCell().isRetaining()) {
+					// A player is not in a trap cell, so the game is not finished
+					return false;
+				}
+			}
+			
+			// All players are in trap cells, game is finished.
+			return true;
+		}
 	}
 	
 	/**
@@ -88,7 +113,17 @@ public class Game {
 	 */
 	
 	public Player nextPlayer() {
-		return null;
+		Player p = this.mPlayers[mNextPlayerIndex];
+		
+		// End of the array reached, let's reset the index.
+		if(this.mNextPlayerIndex == this.mPlayers.length) {
+			this.mNextPlayerIndex = 0;
+		}
+		else {
+			this.mNextPlayerIndex++;
+		}
+		
+		return p;
 	}
 	
 	/**
