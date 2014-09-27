@@ -3,7 +3,6 @@ package bour.camus.gameofgooses.models;
 import java.security.InvalidParameterException;
 
 import bour.camus.gameofgooses.models.cells.ICell;
-import bour.camus.gameofgooses.ui.ConsoleUI;
 import bour.camus.gameofgooses.ui.IGameWatcher;
 
 /**
@@ -26,6 +25,19 @@ public class Game {
 	
 	/** The index of the next player to play. */
 	private int mNextPlayerIndex;
+	
+	/**
+	 * Exchange positions of two players from 2 cells
+	 * @param c1 the cell on which is the first player.
+	 * @param c2 the cell on which is the second player.
+	 */
+	
+	private void swapPlayers(ICell c1, ICell c2) {
+		this.mInterface.onPlayerSwap(c1.getPlayer(), c1, c2.getPlayer(), c2);
+		Player p = c2.getPlayer();
+		c2.welcome(c1.getPlayer());
+		c1.welcome(p);
+	}
 	
 	/**
 	 * Constructor initialising the players through the {@link IGameWatcher#initialisePlayers()} method.

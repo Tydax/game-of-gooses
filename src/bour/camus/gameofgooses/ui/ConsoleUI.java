@@ -50,7 +50,7 @@ public class ConsoleUI implements IGameWatcher {
 			// Store it
 			names[i] = name;
 		}
-		
+		scan.close();
 		return names;
 	}
 	
