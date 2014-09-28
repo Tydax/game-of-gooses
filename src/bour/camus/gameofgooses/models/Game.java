@@ -102,7 +102,7 @@ public class Game {
 			this.mInterface.onPlayerTurn(player);
 			
 			// Check if the player can leave
-			final ICell currentCell = player.getCell();
+			ICell currentCell = player.getCell();
 			if(currentCell.canBeLeftNow()) {
 				// Throw dice
 				int die1 = player.throwDie(),
@@ -123,6 +123,7 @@ public class Game {
 				}
 				else {
 					targetCell.welcome(player);
+					player.setCell(targetCell);
 					currentCell.empty();
 				}
 				

@@ -62,7 +62,8 @@ public class ConsoleUI implements IGameWatcher {
 
 	@Override
 	public void onPlayerTurn(Player player) {
-		System.out.println(player.getName() + ", it's your turn!");
+		System.out.println();
+		System.out.println("** " + player.getName() + ", it's your turn! **");
 		
 		// Wait for the user to press enter to continue
 		/*
@@ -112,7 +113,7 @@ public class ConsoleUI implements IGameWatcher {
 
 	@Override
 	public void onPlayerWaiting(Player player, WaitCell cell, int turnLeft) {
-		System.out.println(player.getName() + " has to wait " + turnLeft + " more turn"
+		System.out.println("Wait cell! " + player.getName() + " has to wait " + turnLeft + " turn"
 				+ (turnLeft > 1
 				  ? "s."
 				  : ".")
