@@ -2,9 +2,7 @@ package bour.camus.gameofgooses.models;
 
 import java.security.InvalidParameterException;
 
-import bour.camus.gameofgooses.models.cells.GooseCell;
 import bour.camus.gameofgooses.models.cells.ICell;
-import bour.camus.gameofgooses.models.cells.TeleportCell;
 import bour.camus.gameofgooses.models.cells.TrapCell;
 import bour.camus.gameofgooses.models.cells.WaitCell;
 import bour.camus.gameofgooses.ui.ConsoleUI;

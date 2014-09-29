@@ -19,7 +19,7 @@ public class TestGame {
 	
 	@Before
 	public void instantiateFields() {
-		this.mGame = new Game("defaultBoard", "Sherlock", "Watson", "Moriarty", "Lestrade");
+		this.mGame = new Game("board.txt", "Sherlock", "Watson", "Moriarty", "Lestrade");
 	}
 	
 	@Test
@@ -43,8 +43,7 @@ public class TestGame {
 		player.setCell(finalCell);
 		
 		// Game must be finished.
-		assertTrue(this.mGame.isFinished());
-		
+		assertTrue(this.mGame.isFinished());	
 		finalCell.empty();
 	}
 
@@ -62,7 +61,7 @@ public class TestGame {
 				nbPlayersTrapped++;
 			}
 		}
-		
+		System.out.println(mGame.isFinished());
 		assertTrue(this.mGame.isFinished());
 	}
 	

@@ -105,8 +105,8 @@ public class Board {
 	 * @return the normalised index
 	 */
 	public int normalise(int index) {
-		if(index>this.getSize())
-			return this.getSize()-(index-this.getSize());
+		if(index>this.getSize()-1)
+			return (this.getSize()-1)-(index-(this.getSize()-1));
 		return index;
 	}
 	
