@@ -1,12 +1,15 @@
-package bour.camus.gameofgooses.models;
+package bour.camus.gameofgooses.models.cells;
+
+import bour.camus.gameofgooses.models.Player;
+import bour.camus.gameofgooses.ui.IGameWatcher;
 
 /** Interface for the cells of the goose game..
  * 
  * @author Armand BOUR
- *
+ * @author Tristan CAMUS
  */
 
-public interface Cell {
+public interface ICell {
 	
 	/**
 	 * Indicates if a player occupying this cell can, at this turn, leave the cell.
@@ -61,4 +64,13 @@ public interface Cell {
 	 * @param player The newcoming Player.
 	 */
 	public void welcome(Player player);
+	
+	/**
+	 * Empty the cell and returns the {@link Player} it used to contain.
+	 * @return The Player that the cell used to contain.
+	 * 			<code>null</code> if the cell was already empty.
+	 */
+	public Player empty();
+	
+	public void noticeUIOfTypeOfCell(Player player, IGameWatcher ui);
 }
