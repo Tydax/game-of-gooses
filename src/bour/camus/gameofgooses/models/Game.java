@@ -31,8 +31,8 @@ public class Game {
 	
 	/**
 	 * Exchange positions of two players from 2 cells
-	 * @param c1 the cell on which is the first player.
-	 * @param c2 the cell on which is the second player.
+	 * @param c1 The cell on which is the first player.
+	 * @param c2 The cell on which is the second player.
 	 */
 	
 	private void swapPlayers(ICell c1, ICell c2) {

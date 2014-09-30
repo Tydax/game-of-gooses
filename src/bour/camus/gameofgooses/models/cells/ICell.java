@@ -62,7 +62,6 @@ public interface ICell {
 	 * Welcomes the {@link Player}. This method is called when a new Player arrives on
 	 * the cell.
 	 * @param player The newcoming Player.
-	 * @param ui TODO
 	 */
 	public void welcome(Player player);
 	

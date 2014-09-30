@@ -25,14 +25,15 @@ public class Board {
 	private ICell[] mCells;
 
 	/**
-	 * Constructor using a .txt file as a model to create the board. You don't need to specify the first and final cell in the file.
+	 * Constructor using a .txt file as a model to create the board. One does not need to specify the first and final cells in the file.
 	 * @param filename The filename of the model to use. See <code>board.txt</code> for an example.
-	 * 		<code>0</code> is a {@link NormalCell} ;
-	 * 		<code>1</code> is a {@link GooseCell} ;
-	 * 		<code>2</code> is a {@link TrapCell} ;
-	 * 		<code>3</code> is a {@link WaitCell}, followed by the number of turns to wait (ex: <code>3, 2</code>) ;
-	 * 		<code>4</code> is a {@link TeleportCell}, followed by the index of the cell to teleport to (ex: <code>4, 32</code>).
-	 * 
+	 * <ul>
+	 * 		<li><code>0</code> is a {@link NormalCell} ;</li>
+	 * 		<li><code>1</code> is a {@link GooseCell} ;</li>
+	 * 		<li><code>2</code> is a {@link TrapCell} ;</li>
+	 * 		<li><code>3</code> is a {@link WaitCell}, followed by the number of turns to wait (ex: <code>3,2</code>) ;</li>
+	 * 		<li><code>4</code> is a {@link TeleportCell}, followed by the index of the cell to teleport to (ex: <code>4,2</code>).</li>
+	 * </ul>
 	 */
 	public Board(String filename) {
 		File file = new File(filename);
@@ -115,8 +116,8 @@ public class Board {
 	 * @return the normalised index
 	 */
 	public int normalise(int index) {
-		if(index>this.getSize()-1)
-			return (this.getSize()-1)-(index-(this.getSize()-1));
+		if(index > this.getSize() - 1)
+			return (this.getSize() - 1) - (index-(this.getSize()-1));
 		return index;
 	}
 	
