@@ -92,6 +92,6 @@ public class WaitCell extends AbstractCell {
 	
 	@Override
 	public void noticeUIOfTypeOfCell(Player player, IGameWatcher ui) {
-		ui.onPlayerWaiting(player, this, this.mTimeLeft);
+		ui.onPlayerWaiting(player, this, this.mTimeLeft + 1);
 	}
 }

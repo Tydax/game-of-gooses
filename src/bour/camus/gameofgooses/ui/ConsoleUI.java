@@ -1,6 +1,7 @@
 package bour.camus.gameofgooses.ui;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import bour.camus.gameofgooses.models.Player;
@@ -22,6 +23,7 @@ public class ConsoleUI implements IGameWatcher {
 	public String[] initialisePlayers() {
 		int nbPlayers;
 		Scanner scan = new Scanner(System.in);
+		scan.useDelimiter("\n");
 		
 		// Wait for an appropriate number of players
 		do {
@@ -29,7 +31,13 @@ public class ConsoleUI implements IGameWatcher {
 			System.out.print("Number of players (2-6): ");
 			
 			// Wait for a number and store it
-			nbPlayers = scan.nextInt();
+			if(scan.hasNextInt()) {
+				nbPlayers = scan.nextInt();
+			}
+			else {
+				nbPlayers = 0;
+				scan.next();
+			}
 		} while (nbPlayers < 2 || nbPlayers > 6);
 		
 		
@@ -87,10 +95,10 @@ public class ConsoleUI implements IGameWatcher {
 	}
 
 	@Override
-	public void onPlayerSwap(Player player1, ICell cell1, Player player2,
-			ICell cell2) {
-		System.out.println("Cell " + cell1.getIndex() + " is occupied by " + player2.getName() + "!");
-		System.out.println(player2.getName() + " is sent to cell " + cell2.getIndex() + ".");
+	public void onPlayerSwap(Player playerArriving, ICell cellFrom, Player playerOccupying,
+			ICell cellTo) {
+		System.out.println("Cell " + cellTo.getIndex() + " is occupied by " + playerOccupying.getName() + "!");
+		System.out.println(playerOccupying.getName() + " is sent to cell " + cellFrom.getIndex() + ".");
 	}
 
 	@Override

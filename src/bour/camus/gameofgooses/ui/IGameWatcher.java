@@ -56,13 +56,13 @@ public interface IGameWatcher {
 	
 	/**
 	 * Method called when two players swap their gooses.
-	 * @param player1 The player arriving on the cell.
-	 * @param cell1 The cell where the new player is arriving.
-	 * @param player2 The player leaving the cell.
-	 * @param cell2 The cell where the new player is coming from.
+	 * @param playerArriving The player arriving on the cell.
+	 * @param cellFrom The cell where the new player (playerArriving) is coming from.
+	 * @param playerOccupying The player occupying the cell, and about to leave.
+	 * @param cellTo The cell where the new player is arriving, already occupied by playerOccupying.
 	 */
 	
-	public void onPlayerSwap(Player player1, ICell cell1, Player player2, ICell cell2);
+	public void onPlayerSwap(Player playerArriving, ICell cellFrom, Player playerOccupying, ICell cellTo);
 	
 	/**
 	 * Method called when the player arrives on a {@link GooseCell}.

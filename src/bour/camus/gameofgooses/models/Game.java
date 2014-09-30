@@ -31,15 +31,15 @@ public class Game {
 	
 	/**
 	 * Exchange positions of two players from 2 cells
-	 * @param c1 The cell on which is the first player.
-	 * @param c2 The cell on which is the second player.
+	 * @param cellFrom The cell on which is the first player.
+	 * @param cellTo The cell on which is the second player.
 	 */
 	
-	private void swapPlayers(ICell c1, ICell c2) {
-		this.mInterface.onPlayerSwap(c1.getPlayer(), c1, c2.getPlayer(), c2);
-		Player p = c2.getPlayer();
-		c2.welcome(c1.getPlayer());
-		c1.welcome(p);
+	private void swapPlayers(ICell cellFrom, ICell cellTo) {
+		this.mInterface.onPlayerSwap(cellFrom.getPlayer(), cellFrom, cellTo.getPlayer(), cellTo);
+		Player p = cellTo.getPlayer();
+		cellTo.welcome(cellFrom.getPlayer());
+		cellFrom.welcome(p);
 	}
 	
 	/**
@@ -116,25 +116,18 @@ public class Game {
 				int realIndex = this.mBoard.normalise(targetCell.handleMove(diceScore));
 				targetCell = this.mBoard.getCell(realIndex);
 				
+				// If the cell is already occupied by a player, swapping players.
 				if(targetCell.isBusy()) {
-					swapPlayers(targetCell, currentCell);
+					swapPlayers(currentCell, targetCell);
 				}
 				else {
 					targetCell.welcome(player);
 					player.setCell(targetCell);
 					currentCell.empty();
 				}
-				
-				targetCell.noticeUIOfTypeOfCell(player, this.mInterface);
 			}
 			else { // if he can't, he's stuck in trap cell or wait cell, notice the interface
-				if(currentCell instanceof TrapCell) {
-					this.mInterface.onPlayerTrapped(player, (TrapCell) currentCell);
-				}
-				else if(currentCell instanceof WaitCell) {
-					WaitCell waitCell = (WaitCell) currentCell;
-					this.mInterface.onPlayerWaiting(player, waitCell, waitCell.getTimeLeft());
-				}
+				currentCell.noticeUIOfTypeOfCell(player, mInterface);
 			}
 		}
 	}
