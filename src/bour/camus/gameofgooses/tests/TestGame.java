@@ -19,7 +19,7 @@ public class TestGame {
 	
 	@Before
 	public void instantiateFields() {
-		this.mGame = new Game("board.txt", "Sherlock", "Watson", "Moriarty", "Lestrade");
+		this.mGame = new Game("testAllTrapped.txt", "Sherlock", "Watson", "Moriarty", "Lestrade");
 	}
 	
 	@Test
@@ -57,11 +57,13 @@ public class TestGame {
 			ICell c = board.getCell(i);
 			
 			if(c instanceof TrapCell && !c.isBusy()) {
-				c.welcome(this.mGame.nextPlayer());
+				final Player player = this.mGame.nextPlayer();
+				c.welcome(player);
+				player.setCell(c);
 				nbPlayersTrapped++;
 			}
 		}
-		System.out.println(mGame.isFinished());
+
 		assertTrue(this.mGame.isFinished());
 	}
 	

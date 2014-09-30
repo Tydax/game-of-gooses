@@ -25,6 +25,11 @@ public class TrapCell extends AbstractCell {
 	}
 	
 	@Override
+	public boolean isRetaining() {
+		return true;
+	}
+	
+	@Override
 	public int handleMove(int diceThrow) {
 		return this.mIndex;
 	}

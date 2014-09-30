@@ -150,7 +150,9 @@ public class Game {
 		final ICell finalCell = this.mBoard.getCell(this.mBoard.getSize() - 1);
 		if(finalCell.isBusy()) {
 			// Notice the interface of the winner
-			this.mInterface.onPlayerWin(finalCell.getPlayer());
+			if(this.mInterface != null) {
+				this.mInterface.onPlayerWin(finalCell.getPlayer());
+			}
 			
 			return true;
 		}
