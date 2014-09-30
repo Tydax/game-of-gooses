@@ -53,7 +53,7 @@ public class WaitCell extends AbstractCell {
 	
 	@Override
 	public boolean canBeLeftNow() {
-		if(this.mTimeLeft == 0) {
+		if(this.mTimeLeft == 1) {
 			return true;
 		}
 		else {
@@ -92,6 +92,6 @@ public class WaitCell extends AbstractCell {
 	
 	@Override
 	public void noticeUIOfTypeOfCell(Player player, IGameWatcher ui) {
-		ui.onPlayerWaiting(player, this, this.mTimeLeft + 1);
+		ui.onPlayerWaiting(player, this, this.mTimeLeft);
 	}
 }

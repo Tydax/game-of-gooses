@@ -36,10 +36,13 @@ public class Game {
 	 */
 	
 	private void swapPlayers(ICell cellFrom, ICell cellTo) {
-		this.mInterface.onPlayerSwap(cellFrom.getPlayer(), cellFrom, cellTo.getPlayer(), cellTo);
-		Player p = cellTo.getPlayer();
-		cellTo.welcome(cellFrom.getPlayer());
-		cellFrom.welcome(p);
+		// In case we are trying to swap between the same cells.
+		if(cellFrom != cellTo) {		
+			this.mInterface.onPlayerSwap(cellFrom.getPlayer(), cellFrom, cellTo.getPlayer(), cellTo);
+			Player p = cellTo.getPlayer();
+			cellTo.welcome(cellFrom.getPlayer());
+			cellFrom.welcome(p);
+		}
 	}
 	
 	/**
@@ -94,36 +97,51 @@ public class Game {
 	 * Starts the loop of a game of the goose. 
 	 */
 	public void play() {
+		mInterface.onGameStart();
 		while(!isFinished()) {
 			// Select the next player to play
 			Player player = nextPlayer();
 			this.mInterface.onPlayerTurn(player);
 			
 			// Check if the player can leave
-			ICell currentCell = player.getCell();
+			ICell originCell = player.getCell(),
+				  currentCell = originCell,
+				  targetCell;
 			if(currentCell.canBeLeftNow()) {
 				// Throw dice
 				int die1 = player.throwDie(),
 					die2 = player.throwDie(),
-					diceScore = die1+ die2;
+					diceScore = die1+ die2,
+					index = this.mBoard.normalise(currentCell.getIndex() + diceScore);
+				
 				this.mInterface.onPlayerThrowDice(player, die1, die2);
 				
-				int index = this.mBoard.normalise(currentCell.getIndex() + diceScore);
-				ICell targetCell = this.mBoard.getCell(index);
-				this.mInterface.onPlayerMove(player, targetCell);
-				targetCell.noticeUIOfTypeOfCell(player, this.mInterface);
+				// This loop's purpose is to chain cell's effect (for example, a cell teleporting to a goose cell
+				do {
+					// First, we pretend moving the player to the targetCell
+					targetCell = this.mBoard.getCell(index);
+					// Noticing the UI of the move
+					this.mInterface.onPlayerMove(player, targetCell);
+					targetCell.noticeUIOfTypeOfCell(player, this.mInterface);
+					
+					// Then, we check if the cell is supposed to move the goose again (teleport cell for example)
+					index = this.mBoard.normalise(targetCell.handleMove(diceScore));
+					
+					// And we start again the loop from the target cell.
+					currentCell = targetCell;
+				} while(currentCell.handleMove(diceScore) != currentCell.getIndex());
+				// We loop only if the target cell's index is different from its handleMove() result
 				
-				int realIndex = this.mBoard.normalise(targetCell.handleMove(diceScore));
-				targetCell = this.mBoard.getCell(realIndex);
+				// Finally, we can ACTUALLY move the Player by setting the cells
 				
 				// If the cell is already occupied by a player, swapping players.
 				if(targetCell.isBusy()) {
-					swapPlayers(currentCell, targetCell);
+					swapPlayers(originCell, targetCell);
 				}
 				else {
 					targetCell.welcome(player);
 					player.setCell(targetCell);
-					currentCell.empty();
+					originCell.empty();
 				}
 			}
 			else { // if he can't, he's stuck in trap cell or wait cell, notice the interface
@@ -158,6 +176,7 @@ public class Game {
 				}
 			}
 			
+			this.mInterface.onPlayersAllTrapped();
 			// All players are in trap cells, game is finished.
 			return true;
 		}
@@ -200,7 +219,10 @@ public class Game {
 	}
 	
 	public static void main(String[] args) {
-		Game theGame = new Game(new ConsoleUI());
+		String board = args.length > 0
+					 ? args[0]
+					 : "board.txt";
+		Game theGame = new Game(new ConsoleUI(), board);
 		theGame.play();
 	}
 }
